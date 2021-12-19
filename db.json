@@ -18,12 +18,27 @@
     {
       "id": 4,
       "name": "Spiderman",
-      "alterEgo": "Princess Diana "
+      "alterEgo": "Peter Parker "
     },
     {
       "id": 5,
       "name": "Iron man",
-      "alterEgo": "Princess Diana "
+      "alterEgo": "Tony stark"
+    }
+  ],
+
+  "friends": [
+    {
+      "id": 1,
+      "name": "Chandler Bing"
+    },
+    {
+      "id": 2,
+      "name": "Jhoe Tribbiani"
+    },
+    {
+      "id": 3,
+      "name": "Rachel Green"
     }
   ]
 }

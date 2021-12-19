@@ -1,4 +1,5 @@
 import { SuperHerodata } from "../hooks/useSuperHeroData";
+import { Link } from "react-router-dom";
 
 const onSuccess = (data) => {
   console.log("desde onSuccess", data);
@@ -9,14 +10,14 @@ const onError = (error) => {
 };
 
 export const RQSuperHeroesPage = () => {
-  
-  const { isLoading, data, isError, error, isFetching, refetch } = SuperHerodata(onSuccess, onError)
+  const { isLoading, data, isError, error, isFetching, refetch } =
+    SuperHerodata(onSuccess, onError);
 
   // componente de carga de elementos
   if (isLoading || isFetching) {
     return <h1>Loading-...</h1>;
   }
-    // componente de mensaje de error
+  // componente de mensaje de error
   if (isError) {
     return <h1>{error.message}</h1>;
   }
@@ -24,13 +25,14 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>Refetch</button>
-      {/* {data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
-      })} */}
+      {data.data.map((hero) => {
+        return <div key={hero.id}><Link to={`/super-heroes/${hero.id}`}>{hero.name}</Link></div>;
+      })}
 
+      {/* 
       {data.map((heroName) => {
         return <div key={heroName}>{heroName}</div>;
-      })}
+      })} */}
     </>
   );
 };

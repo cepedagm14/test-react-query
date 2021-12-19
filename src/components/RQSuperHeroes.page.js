@@ -1,9 +1,4 @@
-import { useQuery } from "react-query";
-import axios from "axios";
-
-const getHeroes = () => {
-  return axios.get("http://localhost:4000/superheroes");
-};
+import { SuperHerodata } from "../hooks/useSuperHeroData";
 
 const onSuccess = (data) => {
   console.log("desde onSuccess", data);
@@ -14,29 +9,14 @@ const onError = (error) => {
 };
 
 export const RQSuperHeroesPage = () => {
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
-    "super-hero",
-    getHeroes,
-    {
-      onSuccess,
-      onError,
-      // staleTime: 3000,
-      // refetchOnMount,
-      // refetchOnWindowFocus,
-      // refetchInterval,
-      // refetchIntervalInBackground,
-      // enabled: false,
-      select: (data) => {
-        const superHeroNames = data.data.map((hero) => hero.name);
-        return superHeroNames;
-      },
-    }
-  );
+  
+  const { isLoading, data, isError, error, isFetching, refetch } = SuperHerodata(onSuccess, onError)
 
+  // componente de carga de elementos
   if (isLoading || isFetching) {
     return <h1>Loading-...</h1>;
   }
-  // console.log({ isLoading }, { isFetching });
+    // componente de mensaje de error
   if (isError) {
     return <h1>{error.message}</h1>;
   }
